@@ -12,6 +12,12 @@ python_project() {
         echo "Error creating $1.py"
         exit 1
     fi
+
+    if ! python -m venv "$PYTHON_DIR/.venv"; then
+        echo "Error creating Python virtual environment"
+        exit 1
+    fi
+
     exit 0
 }
 
@@ -32,6 +38,7 @@ bash_project() {
         echo "Error granting permission to $1.sh"
         exit 1
     fi
+
     exit 0
 }
 
@@ -40,6 +47,7 @@ while [ "$#" -gt 0 ]; do
     python)
         shift
         python_project "$1"
+
         ;;
     bash)
         shift
